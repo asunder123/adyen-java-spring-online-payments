@@ -25,9 +25,9 @@ def create_table(conn,create_table_sql):
 
 @app.route("/card")
 def events():
- database="/home/asunder/pythonsqlite.db"
+ database="/home/asunder/pythonsqlitetwo.db"
  #print(database)
- sql_create_projects_table="""CREATE TABLE CARDS IF NOT EXISTS(Card_Name VARCHAR(255),Gateway_Name VARCHAR(255),Country VARCHAR(255));"""
+ sql_create_projects_table="""CREATE TABLE CARDS3(Card_Name VARCHAR(255),Gateway_Name VARCHAR(255),Country VARCHAR(255));"""
  conn = create_connection(database)
  print("Connection is",conn)
  #if conn is not None:
@@ -36,14 +36,16 @@ def events():
  #print("Error! cannot create the database connection.")
  cur=conn.cursor()
  #print("Cursor",cur)
- conn.execute("""insert into CARDS (Card_Name,Gateway_Name,Country) values("MasterCard", "G1", "USA");""")
- conn.execute("""insert into CARDS (Card_Name,Gateway_Name,Country) values("Visa", "G2", "UK");""")
- conn.execute("""insert into CARDS (Card_Name,Gateway_Name,Country) values("StandardCharted", "G3", "India");""")
- conn.execute("""insert into CARDS (Card_Name,Gateway_Name,Country) values("CardMax", "G4", "Venezuela");""") 
- conn.execute("""insert into CARDS (Card_Name,Gateway_Name,Country) values("Conquele", "G5", "Argentina");""")
- k=conn.execute("SELECT Card_Name FROM CARDS;")
+ #conn.execute("""insert into CARDS3 (Card_Name,Gateway_Name,Country) values("MasterCard", "G1", "USA");""")
+ #conn.execute("""insert into CARDS3 (Card_Name,Gateway_Name,Country) values("Visa", "G2", "UK");""")
+ #conn.execute("""insert into CARDS3 (Card_Name,Gateway_Name,Country) values("StandardCharted", "G3", "India");""")
+ #conn.execute("""insert into CARDS3 (Card_Name,Gateway_Name,Country) values("CardMax", "G4", "Venezuela");""") 
+ #conn.execute("""insert into CARDS3 (Card_Name,Gateway_Name,Country) values("Conquele", "G5", "Argentina");""")
+ conn.commit()
+ k=conn.execute("SELECT Card_Name FROM CARDS3;")
+ 
  objs=k.fetchall()
-
+ print(objs)
  def events():
   #print("Obj",str(objs),"\nType",type(objs))
   for el in objs:

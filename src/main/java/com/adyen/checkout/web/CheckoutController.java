@@ -45,20 +45,20 @@ public class CheckoutController {
         String url1 ="http://localhost:8081/card";
 	model.addAttribute("resp", this.restTemplate.getForObject(url1, String.class));
 	}
-	if (type=="checkm"){
+	if (type=="checkout"){
 
-	String url2 ="http://localhost:8082/check";
+	String url2 ="http://localhost:8082/checkout";
 	model.addAttribute("resp", this.restTemplate.getForObject(url2, String.class));
 	}	
         return "preview";
     }
 
-    @GetMapping("/checkm")
+    @GetMapping("/checkout")
     public String checkm(Model model) {
-        String url ="http://localhost:8082/check";
+        String url ="http://localhost:8082/checkout";
         model.addAttribute("resp", this.restTemplate.getForObject(url, String.class));
-	return "checkm"	;
-    }
+	return "checkout"	;
+    } 
 
      @GetMapping("/card")
          public String card(Model model) {
@@ -67,7 +67,7 @@ public class CheckoutController {
 	     return "card" ;
 					     }
 
-      @GetMapping("/checkout")
+     /* @GetMapping("/checkout")
        public String checkout(@RequestParam String type, Model model) {
               model.addAttribute("type", type);
               //model.addAttribute("clientKey", this.applicationProperty.getClientKey()); 
@@ -75,13 +75,13 @@ public class CheckoutController {
 		String url1 ="http://localhost:8081/card";
 		model.addAttribute("resp", this.restTemplate.getForObject(url1, String.class));
 				              }
-	      if (type=="checkm"){
+	      if (type=="checkout"){
 
-	          String url2 ="http://localhost:8082/check";
+	          String url2 ="http://localhost:8082/checkout";
 		  model.addAttribute("resp", this.restTemplate.getForObject(url2, String.class));
 					              }
 	       return ""+ type + "" ;
-					      }
+					      } */
 
     @GetMapping("/result/{type}")
     public String result(@PathVariable String type, Model model) {
