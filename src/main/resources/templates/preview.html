@@ -2,13 +2,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layout}">
-<head>
-  <title>Preview</title>
-</head>
+	<h1 th:text="${type}">Type:</h1>
+     <h1 th:text="${resp}">Resp:</h1>
 <body>
+	      <h1 th:text="${type}">Type:</h1>
+	           <h1 th:text="${resp}">Resp:</h1>
 <main layout:fragment="content" class="preview-page">
   <section class="cart">
-    <h2>Cart</h2>
+
     <div class="order-summary">
       <ul class="order-summary-list">
         <li class="order-summary-list-list-item">
@@ -18,15 +19,22 @@
         </li>
         <li class="order-summary-list-list-item">
           <img src="/images/headphones.png" class="order-summary-list-list-item-image" alt="">
-          <p class="order-summary-list-list-item-title">Headphones</p>
-          <p class="order-summary-list-list-item-price">5.00</p>
+	  <p class="order-summary-list-list-item-title">Headphones</p>
+          <p class="order-summary-list-list-item-price">20.00</p>
         </li>
+	<li>
+	 <img src="/images/headphones.png" class="order-summary-list-list-item-image" alt="">	
+	 <p class="order-summary-list-list-item-title">Headphoneset2</p>
+	 <p class="order-summary-list-list-item-price">40.00</p>
+	</li>
       </ul>
     </div>
     <div class="cart-footer"><span class="cart-footer-label">Total:</span><span
       class="cart-footer-amount">10.00</span>
       <a th:href="@{/checkout(type=${type})}">
         <p class="button">Continue to checkout</p>
+	<h1 th:text="${type}">Type:</h1>
+	     <h1 th:text="${resp}">Resp:</h1>
       </a>
     </div>
   </section>

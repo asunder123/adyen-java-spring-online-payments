@@ -9,11 +9,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class CheckoutController {
 
     private final Logger log = LoggerFactory.getLogger(CheckoutController.class);
+	    RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
     public CheckoutController(ApplicationProperty applicationProperty) {
@@ -28,26 +33,61 @@ public class CheckoutController {
     private ApplicationProperty applicationProperty;
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
         return "index";
     }
+
 
     @GetMapping("/preview")
     public String preview(@RequestParam String type, Model model) {
         model.addAttribute("type", type);
+	if (type=="card"){	
+        String url1 ="http://localhost:8081/card";
+	model.addAttribute("resp", this.restTemplate.getForObject(url1, String.class));
+	}
+	if (type=="checkm"){
+
+	String url2 ="http://localhost:8082/check";
+	model.addAttribute("resp", this.restTemplate.getForObject(url2, String.class));
+	}	
         return "preview";
     }
 
-    @GetMapping("/checkout")
-    public String checkout(@RequestParam String type, Model model) {
-        model.addAttribute("type", type);
-        model.addAttribute("clientKey", this.applicationProperty.getClientKey());
-        return "checkout";
+    @GetMapping("/checkm")
+    public String checkm(Model model) {
+        String url ="http://localhost:8082/check";
+        model.addAttribute("resp", this.restTemplate.getForObject(url, String.class));
+	return "checkm"	;
     }
+
+     @GetMapping("/card")
+         public String card(Model model) {
+	     String url ="http://localhost:8081/card";
+	     model.addAttribute("resp", this.restTemplate.getForObject(url, String.class));
+	     return "card" ;
+					     }
+
+      @GetMapping("/checkout")
+       public String checkout(@RequestParam String type, Model model) {
+              model.addAttribute("type", type);
+              //model.addAttribute("clientKey", this.applicationProperty.getClientKey()); 
+	      if (type=="card"){
+		String url1 ="http://localhost:8081/card";
+		model.addAttribute("resp", this.restTemplate.getForObject(url1, String.class));
+				              }
+	      if (type=="checkm"){
+
+	          String url2 ="http://localhost:8082/check";
+		  model.addAttribute("resp", this.restTemplate.getForObject(url2, String.class));
+					              }
+	       return ""+ type + "" ;
+					      }
 
     @GetMapping("/result/{type}")
     public String result(@PathVariable String type, Model model) {
         model.addAttribute("type", type);
+	String url ="http://localhost:8081/"+type+"";
+        model.addAttribute("resp",this.restTemplate.getForObject(url, String.class));
         return "result";
     }
 

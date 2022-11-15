@@ -18,6 +18,7 @@
       </p>
       <p>To learn more about client-side integration solutions, check out <a href="https://docs.adyen.com/checkout">Online
         payments.</a></p>
+      <p th:text="${resp}">Resp:</p>
     </div>
     <ul class="integration-list">
       <li class="integration-list-item">
@@ -28,7 +29,7 @@
         </a>
       </li>
       <li class="integration-list-item">
-        <a href="/preview?type=card" class="integration-list-item-link">
+        <a href="/card" class="integration-list-item-link">
           <div class="title-container">
             <p class="integration-list-item-title">Card</p>
           </div>
@@ -55,6 +56,14 @@
           </div>
         </a>
       </li>
+        <li class="integration-list-item">
+		<a href="/checkm" class="integration-list-item-link">
+			<div class="title-container">
+		<p class="integration-list-item-title">checkm</p>
+			</div>
+		</a>
+	 </li>
+
 <!--      <li class="integration-list-item">-->
 <!--        <a href="/preview?type=sepadirectdebit" class="integration-list-item-link">-->
 <!--          <div class="title-container">-->

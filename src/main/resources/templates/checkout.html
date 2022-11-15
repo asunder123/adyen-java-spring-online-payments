@@ -5,12 +5,15 @@
 <head>
   <title>Checkout</title>
 </head>
+ <p th:text="${type}"/>
+   <p th:text="${resp}"/>
 <body>
 <div layout:fragment="content" id="payment-page">
   <!-- Hidden divs with data passed from the Express server -->
   <div id="clientKey" class="hidden" th:text="${clientKey}"></div>
   <div id="type" class="hidden" th:text="${type}"></div>
-
+  <p th:text="${type}"/>
+  <p th:text="${resp}"/>
   <div class="container">
     <!-- The Checkout integration type will be rendered below.-->
     <!-- Drop-in includes styling out-of-the-box, so no additional styling is needed. -->
