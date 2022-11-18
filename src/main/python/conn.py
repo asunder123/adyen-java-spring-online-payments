@@ -11,5 +11,5 @@ import os
 class Mongo:
  @staticmethod
  def connection():
-  client=pymongo.MongoClient("mongodb+srv://asunder:Mongo456@cluster0.bafj3mg.mongodb.net/?retryWrites=true&w=majority")   
+  client=pymongo.MongoClient("mongodb+srv://sundera:Mongo457@cluster0.bafj3mg.mongodb.net/?retryWrites=true&w=majority")
   return client

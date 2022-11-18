@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import java.util.*;
 
 @Controller
 public class CheckoutController {
@@ -48,7 +49,9 @@ public class CheckoutController {
 	if (type=="checkout"){
 
 	String url2 ="http://localhost:8082/checkout";
-	model.addAttribute("resp", this.restTemplate.getForObject(url2, String.class));
+	//model.addAttribute("resp", this.restTemplate.getForObject(url2, String.class).split(",")[1]);
+	model.addAttribute("resp", (this.restTemplate.getForObject(url2, String.class).split(","))[2]);
+	model.addAttribute("resp", (this.restTemplate.getForObject(url2, String.class).split(","))[3]);
 	}	
         return "preview";
     }
@@ -56,9 +59,19 @@ public class CheckoutController {
     @GetMapping("/checkout")
     public String checkm(Model model) {
         String url ="http://localhost:8082/checkout";
-        model.addAttribute("resp", this.restTemplate.getForObject(url, String.class));
-	return "checkout"	;
-    } 
+	
+	String obj = this.restTemplate.getForObject(url, String.class);
+        //String ls = obj.split(",")[1];
+	//ArrayList<String> empList =new ArrayList<String>();}
+	//empList.add(obj);
+	//Iterator<String> stringIterator = empList.iterator();
+	for(int i=0;i<3;i++)
+	{
+        model.addAttribute("resp",obj.split("}")[i]);
+	}
+	return "checkout" ;
+    }
+
 
      @GetMapping("/card")
          public String card(Model model) {
